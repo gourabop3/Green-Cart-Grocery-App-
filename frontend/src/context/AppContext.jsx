@@ -18,7 +18,7 @@ export const AppContextProvider = ({ children }) => {
   
 
 
-  const currency = import.meta.VITE_CURRENCY;
+  const currency = import.meta.env.VITE_CURRENCY;
 
   //Fetch all products
   const fetchProducts = async () => {

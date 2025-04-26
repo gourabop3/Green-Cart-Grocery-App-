@@ -15,6 +15,9 @@ import AddAddress from "./pages/AddAddress";
 import MyOrders from "./pages/MyOrders";
 import SellerLogin from "./components/forms/Seller/SellerLogin";
 import SellerDashboardWithNavbar from "./components/uilayouts/Seller/SellerDashboardWithNavbar";
+import AddProduct from "./pages/Seller/AddProduct";
+import ProductList from "./pages/Seller/ProductList";
+import Orders from "./pages/Seller/Orders";
 
 const App = () => {
 
@@ -36,8 +39,10 @@ const App = () => {
           <Route path="/add-address" element={<AddAddress/>} />
           <Route path="/my-orders" element={<MyOrders/>} />
 
-          <Route>
-            <Route path="/seller" element={isSeller ? <SellerDashboardWithNavbar/> : <SellerLogin/>}/>
+          <Route path="/seller" element={isSeller ? <SellerDashboardWithNavbar/> : <SellerLogin/>}>
+            <Route index element={isSeller ? <AddProduct/> : null}/>
+            <Route path="product-list" element={isSeller ? <ProductList/> : null}/>
+            <Route path="orders" element={isSeller ? <Orders/> : null}/>
           </Route>
         </Routes>
       </div>

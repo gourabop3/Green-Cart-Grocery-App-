@@ -15,6 +15,7 @@ import sellerRouter from "./routes/sellerRoutes.js";
 import productRouter from "./routes/productRoutes.js";
 import cartRouter from "./routes/cartRoute.js";
 import addressRouter from "./routes/addressRoutes.js";
+import orderRouter from "./routes/orderRoute.js";
 
 import connectClodinary from "./configs/cloudinary.js";
 
@@ -49,6 +50,7 @@ app.use("/api/seller", sellerRouter);
 app.use("/api/product", productRouter);
 app.use("/api/cart", cartRouter);
 app.use("/api/address", addressRouter);
+app.use("/api/order", orderRouter);
 
 //listening on port
 app.listen(PORT, () => {

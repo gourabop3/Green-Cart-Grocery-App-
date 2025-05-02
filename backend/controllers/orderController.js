@@ -8,10 +8,14 @@ import Product from "../models/product.js";
 export const placeOrderCOD = async (req, res) => {
 
     try {
-        const {userId, items, address} = req.body;
+        const userId = req.userId;
+        const {items, address} = req.body;
 
-        if(!address || items.length ===0){
-            return res.json({success : false, message : "Invalid Data"})
+        if(!address ){
+            return res.json({success : false, message : "Please select address!"})
+        }
+        if(items.length ===0){
+            return res.json({success : false , message : "Please select at least 1 item!"})
         }
 
         //Calculate amount using items
@@ -51,7 +55,7 @@ export const placeOrderCOD = async (req, res) => {
 export const getUserOrders = async(req, res) =>{
 
     try {
-        const {userId} = req.body;
+        const userId = req.userId;
         const orders = await Order.find({
             userId,
             $or: [{paymentType: "COD"}, {isPaid : true}]

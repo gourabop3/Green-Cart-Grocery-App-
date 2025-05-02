@@ -66,7 +66,8 @@ const ProductDetails = () => {
               {Array(5)
                 .fill("")
                 .map((_, i) => (
-                  <img
+                  <img 
+                    key={i}
                     className="md:w-4 w-3.5"
                     src={i < 4 ? assets.star_icon : assets.star_dull_icon}
                     alt=""

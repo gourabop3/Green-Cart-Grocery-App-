@@ -18,10 +18,11 @@ import SellerDashboardWithNavbar from "./components/uilayouts/Seller/SellerDashb
 import AddProduct from "./pages/Seller/AddProduct";
 import ProductList from "./pages/Seller/ProductList";
 import Orders from "./pages/Seller/Orders";
+import axios from "axios";
 
 
 const App = () => {
-
+  axios.defaults.withCredentials = true;
   const isSellerPath = useLocation().pathname.includes("seller")
   const {showUserLogin, isSeller} = useAppContext()
 

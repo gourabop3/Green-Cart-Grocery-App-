@@ -10,6 +10,9 @@ export const updateCart = async (req, res) => {
     try {
         const userId = req.userId;
         const { cartItems} = req.body;
+        if(!cartItems){
+            res.status(400).json({success : false, message : "Cart is Empty!"});
+        }
         // console.log(userId, cartItems);
         await User.findByIdAndUpdate(userId, {cartItems});
         res.json({success : true, message : "Cart Updated!"})

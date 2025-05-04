@@ -30,7 +30,7 @@ await connectClodinary();
 
 //5.
 //Allow multiple origins
-const allowedOrigin = ["*"];
+const allowedOrigin = ["http://localhost:5173", "https://green-cart-grocery-app-rkt9.vercel.app"];
 
 //4.
 //Middleware configuration

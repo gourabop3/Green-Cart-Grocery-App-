@@ -4,23 +4,23 @@ import { dummyOrders } from "../assets/assets";
 import toast from "react-hot-toast";
 
 const MyOrders = () => {
-  const [myOrders, setMyOrders ] = useState([]);
+  const [myOrders, setMyOrders] = useState([]);
 
-  const { currency, user,axios } = useAppContext();
+  const { currency, user, axios } = useAppContext();
 
   const fetchMyOrders = async () => {
-   try {
-      const {data} = await axios.get('/api/order/user');
-      if(data.success){
+    try {
+      const { data } = await axios.get("/api/order/user");
+      if (data.success) {
         setMyOrders(data.orders);
       }
-   } catch (error) {
-    toast.error(error.message)
-   }
+    } catch (error) {
+      toast.error(error.message);
+    }
   };
 
   useEffect(() => {
-    if(user){
+    if (user) {
       fetchMyOrders();
     }
   }, [user]);
@@ -39,7 +39,10 @@ const MyOrders = () => {
           <p className="flex justify-between md:items-center text-gray-400 md:font-medium max-md:flex-col">
             <span>Order Id : {order._id}</span>
             <span>Payment : {order.paymentType}</span>
-            <span>Total Amount : {currency}{order.amount}</span>
+            <span>
+              Total Amount : {currency}
+              {order.amount}
+            </span>
           </p>
           {order.items.map((item, index) => (
             <div
@@ -49,15 +52,17 @@ const MyOrders = () => {
               } border-gray-300 flex flex-col md:flex-row md:items-center justify-between p-4 py-5 md:gap-16 w-full max-w-4xl`}
             >
               <div className="flex items-center mb-4 md:mb-0">
-                <div className="bg-primary/10 p-4 rounded-lg">
-                  {item.product.image &&
-                  <img
-                    src={item.product.image[0]}
-                    alt=""
-                    className="w-16 h-16"
-                  />
-                  } 
-                </div>
+                {item.product.image ? (
+                  <div className="bg-primary/10 p-4 rounded-lg">
+                    <img
+                      src={item.product.image[0]}
+                      alt=""
+                      className="w-16 h-16"
+                    />
+                  </div>
+                ) : (
+                  <div>No Orders Found</div>
+                )}
                 <div className="ml-4">
                   <h2 className="text-xl font-medium text-gray-800">
                     {item.product.name}
@@ -73,7 +78,8 @@ const MyOrders = () => {
               </div>
 
               <p className="text-primary text-lg font-medium">
-                Amount: {currency}{item.product.offerPrice * item.quantity}
+                Amount: {currency}
+                {item.product.offerPrice * item.quantity}
               </p>
             </div>
           ))}

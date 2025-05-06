@@ -27,6 +27,11 @@ const Login = () => {
             navigate('/');
             setUser(data.user)
             setShowUserLogin(false)
+
+            if(state === "register"){
+              toast.success("User registered successfully!")
+            }
+
             toast.success("Logged In!");
           }else{
             toast.error(data.message);

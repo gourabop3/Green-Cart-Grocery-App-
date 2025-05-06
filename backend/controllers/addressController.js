@@ -34,6 +34,10 @@ export const getAddress = async(req, res) => {
 
         const addresses = await Address.find({userId})
 
+        if(!addresses){
+            res.json({success :false, message : "Please add an address first!"})
+        }
+
         res.json({success: true, addresses})
         
 

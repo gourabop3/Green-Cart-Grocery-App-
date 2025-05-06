@@ -25,6 +25,9 @@ const MyOrders = () => {
     }
   }, [user]);
 
+ 
+  
+
   return (
     <div className="mt-16 pb-16">
       <div className="flex flex-col items-end w-max mb-8">
@@ -52,7 +55,8 @@ const MyOrders = () => {
               } border-gray-300 flex flex-col md:flex-row md:items-center justify-between p-4 py-5 md:gap-16 w-full max-w-4xl`}
             >
               <div className="flex items-center mb-4 md:mb-0">
-                {item.product.image ? (
+                {item.product?.image && (
+                  
                   <div className="bg-primary/10 p-4 rounded-lg">
                     <img
                       src={item.product.image[0]}
@@ -60,14 +64,13 @@ const MyOrders = () => {
                       className="w-16 h-16"
                     />
                   </div>
-                ) : (
-                  <div>No Orders Found</div>
+                
                 )}
                 <div className="ml-4">
                   <h2 className="text-xl font-medium text-gray-800">
-                    {item.product.name}
+                    {item.product?.name}
                   </h2>
-                  <p>Category: {item.product.category}</p>
+                  <p>Category: {item.product?.category}</p>
                 </div>
               </div>
 
@@ -79,7 +82,7 @@ const MyOrders = () => {
 
               <p className="text-primary text-lg font-medium">
                 Amount: {currency}
-                {item.product.offerPrice * item.quantity}
+                {item.product?.offerPrice * item.quantity}
               </p>
             </div>
           ))}
